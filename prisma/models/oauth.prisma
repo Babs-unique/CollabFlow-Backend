@@ -1,0 +1,8 @@
+model Oauth {
+  id       String @id @default(uuid()) @db.Uuid
+  provider String @db.VarChar(255)
+  googleId String @db.VarChar(255)
+  githubId String @db.VarChar(255)
+  userId   String @db.Uuid
+  user     User   @relation(fields: [userId], references: [id])
+}

@@ -1,1 +1,15 @@
-model
+model User {
+  id              String   @id @default(uuid(7)) @db.Uuid
+  email           String   @unique
+  password        String   @db.VarChar(255)
+  firstName       String   @db.VarChar(255)
+  lastName        String   @db.VarChar(255)
+  isEmailVerified Boolean  @default(false)
+  emailVerificationToken   String?  @db.VarChar(255)
+  emailVerificationExpires DateTime?
+  passwordResetToken       String?  @db.VarChar(255)
+  passwordResetExpires     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  oauths          Oauth[]
+}

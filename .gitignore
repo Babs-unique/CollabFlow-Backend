@@ -1,5 +1,34 @@
+# Dependencies
 node_modules/
-dist/
 
+# Build output
+dist/
+coverage/
+
+# Environment files
 .env
-/generated/prisma
+.env.*
+!.env.example
+
+# Prisma generated clients
+/generated/prisma/
+/src/generated/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local editor / OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local AI/tooling state
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
