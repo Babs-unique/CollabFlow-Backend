@@ -3,6 +3,7 @@ export interface RegisterBody {
     password: string;
     firstName: string;
     lastName: string;
+    cloudFlareToken?: string;
 }
 
 
@@ -10,6 +11,7 @@ export interface RegisterBody {
 export interface LoginBody {
     email: string;
     password: string;
+    cloudFlareToken?: string;
 }
 
 export interface ForgotPasswordBody {
