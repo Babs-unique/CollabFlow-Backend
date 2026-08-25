@@ -1,7 +1,3 @@
-// This file keeps the shared HTML structure in one place so the individual templates stay readable.
-// The layout is deliberately simple at first, and it can be refactored later into a more advanced design system.
-
-// Escape HTML characters before injecting user-generated values into email markup.
 export const escapeHtml = (value: string) =>
   value
     .replace(/&/g, '&amp;')
@@ -10,7 +6,6 @@ export const escapeHtml = (value: string) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
-// Render the common email shell used by all templates so the body looks consistent across messages.
 export const renderEmailLayout = ({
   title,
   preview,
@@ -26,7 +21,6 @@ export const renderEmailLayout = ({
   primaryButtonText?: string;
   primaryButtonUrl?: string;
 }) => {
-  // Keep the main button optional so some templates can send simple informational emails without a CTA.
   const buttonMarkup = primaryButtonText && primaryButtonUrl
     ? `
           <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 28px auto 0;">
@@ -41,7 +35,6 @@ export const renderEmailLayout = ({
         `
     : '';
 
-  // Return the final HTML string for the email body.
   return `
     <!DOCTYPE html>
     <html lang="en">
