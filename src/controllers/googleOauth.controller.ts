@@ -57,7 +57,11 @@ export const initiateGoogleOAuth = (
             });
         }
 
-        return res.redirect(authUrl);
+        // return res.redirect(authUrl);
+        return res.status(200).json({   
+            success: true,
+            authUrl
+        })
     } catch (error) {
         logger.error({ err: error }, 'Error initiating Google OAuth');
         return next(createHttpError('Failed to initiate Google OAuth', 500));

@@ -56,7 +56,11 @@ export const initiateGithubOAuth = (
             });
         }
 
-        return res.redirect(authUrl);
+        //res.redirect(authUrl);
+        return res.status(200).json({   
+            success: true,
+            authUrl
+        });
     } catch (error) {
         logger.error({ err: error }, 'Error initiating GitHub OAuth');
         return next(createHttpError('Failed to initiate GitHub OAuth', 500));
