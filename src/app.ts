@@ -1,8 +1,9 @@
 import express from 'express';
 import type{ Request, Response, Express, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
-import morgan from 'morgan';
+import { httpLogger } from './lib/logger.js';
 import cors from 'cors';
+import logger from './lib/logger.js';
 import dotenv from 'dotenv'
 import session from 'express-session'
 import { errorHandler } from './middlewares/errorHandler.js'
@@ -14,7 +15,7 @@ dotenv.config();
 
 const app: Express = express();
 app.use(express.json())
-app.use(morgan('dev'));
+app.use(httpLogger);
 app.use(cookieParser());
 app.use(cors({
     origin: process.env.CLIENT_URL || 'http://localhost:5173',
@@ -25,7 +26,7 @@ app.use(cors({
 const redisClient = createClient({
     url: process.env.REDIS_URL
 });
-redisClient.on('error', err => console.log('Redis Client Error', err));
+redisClient.on('error', err => logger.error({ err }, 'Redis Client Error'));
 
 await redisClient.connect();
 

@@ -1,7 +1,8 @@
 import { ErrorRequestHandler } from 'express';
+import logger from '../lib/logger.js';
 
 export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-    console.error('Error Intercepted:', err.stack);
+    logger.error({ err }, 'Error Intercepted');
 
     if (res.headersSent) {
         return next(err);

@@ -1,12 +1,15 @@
-import { Queue, QueueOptions } from 'bullmq';
+import { Queue, type QueueOptions } from 'bullmq';
 import Redis from 'ioredis';
+import logger from '../lib/logger.js';
+import type { EmailJob } from './emailTypes.js';
 
 const redisUrl = process.env.REDIS_URL;
 if (!redisUrl) {
   throw new Error('REDIS_URL environment variable is missing.');
 }
-const connection = new Redis(redisUrl, {
-  maxRetriesPerRequest: null, 
+
+export const connection = new Redis(redisUrl, {
+  maxRetriesPerRequest: null,
   enableReadyCheck: false,
 });
 
@@ -23,11 +26,11 @@ const queueOptions: QueueOptions = {
   },
 };
 
-const emailQueue = new Queue('email', queueOptions);
+const emailQueue = new Queue<EmailJob>('email', queueOptions);
 
-// 5. Global error handling for the queue instance
 emailQueue.on('error', (error) => {
-  console.error(`BullMQ Queue Error: ${error.message}`);
+  logger.error({ err: error }, 'BullMQ Queue Error');
 });
 
 export default emailQueue;
+
