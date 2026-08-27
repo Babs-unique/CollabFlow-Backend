@@ -20,11 +20,13 @@ import {
     initiateGithubOAuth,
 } from '../controllers/githubOauth.controller.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
+import { loginSchema, registerSchema } from '../schema/auth.schema.js';
+import { validateRequest } from '../middlewares/validateResource.js';
 
 const router: Router = express.Router();
 
-router.post('/register', register);
-router.post('/login', login);
+router.post('/register', validateRequest(registerSchema) ,  register);
+router.post('/login', validateRequest( loginSchema ) ,  login);
 router.post('/logout', authMiddleware, logoutUser);
 router.get('/me', authMiddleware, me);
 router.post('/forgot-password', forgotPassword);
