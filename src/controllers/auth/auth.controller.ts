@@ -1,17 +1,17 @@
 import type { Request, Response, NextFunction } from "express";
 import argon2 from "argon2";
 import crypto from "node:crypto";
-import { prisma } from "../lib/prisma";
-import emailService from "../services/email.service.js";
+import { prisma } from "../../lib/prisma";
+import emailService from "../../services/email.service.js";
 import type {
   ForgotPasswordBody,
   LoginBody,
   RegisterBody,
   ResetPasswordBody,
   VerifyEmailBody,
-} from "../interfaces/auth";
-import { createHttpError } from "../utils/httpError";
-import { validateTurnstile } from "../utils/cloudFlare"; 
+ } from "../../interfaces/auth";
+import { createHttpError } from "../../utils/httpError";
+import { validateTurnstile } from "../../utils/cloudFlare"; 
 
 const TOKEN_BYTES = 32;
 const PASSWORD_RESET_EXPIRY_MS = 15 * 60 * 1000;
@@ -154,6 +154,7 @@ export const logoutUser = (req: Request, res: Response) => {
 
 export const me = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    console.log(req.session)
     const user = await prisma.user.findUnique({
       where: { id: req.session.userId },
     });

@@ -1,12 +1,12 @@
 import type { Request, Response, NextFunction } from 'express';
-import { googleConfig } from '../configs/google.js';
-import { googleAccessToken, googleUser } from '../services/google.service.js';
-import { userLoginOrRegister } from '../services/googleAuth.service.js';
-import { generateCodeVerifier, generateCodeChallenge } from '../utils/pkce.js';
-import { generateState, validateState, deleteState } from '../utils/state.js';
-import { prisma } from '../lib/prisma.js';
-import { createHttpError } from '../utils/httpError.js';
-import logger from '../lib/logger.js';
+import { googleConfig } from '../../configs/google.js';
+import { googleAccessToken, googleUser } from '../../services/google.service.js';
+import { userLoginOrRegister } from '../../services/googleAuth.service.js';
+import { generateCodeVerifier, generateCodeChallenge } from '../../utils/pkce.js';
+import { generateState, validateState, deleteState } from '../../utils/state.js';
+import { prisma } from '../../lib/prisma.js';
+import { createHttpError } from '../../utils/httpError.js';
+import logger from '../../lib/logger.js';
 
 const OAUTH_STATE_TTL_MS = 15 * 60 * 1000;
 
