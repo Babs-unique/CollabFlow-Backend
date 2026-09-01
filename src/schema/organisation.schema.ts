@@ -17,11 +17,13 @@ export const createOrganizationSchema = z.object({
   }),
 
   // members/invites: frontend sends an array of invite objects
-  members: z.array(
+  invitations: z.array(
     z.object({
       email: z.string().email(),
       // accept role name and later resolve to roleId in service
       role: RoleName,
+
+      roleId: z.string().uuid(),
       // optional expiresAt ISO string; server may override
       expiresAt: z.string().optional(),
     })

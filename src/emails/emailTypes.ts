@@ -17,6 +17,7 @@ export type WorkspaceInvitationData = {
   inviterName: string;
   workspaceName: string;
   invitationUrl: string;
+  invitationCode?: string;
 };
 
 export type PasswordResetData = {
