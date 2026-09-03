@@ -31,3 +31,14 @@ export const createOrganizationSchema = z.object({
 });
 
 export type CreateOrganizationInput = z.infer<typeof createOrganizationSchema>;
+
+export const joinOrganizationSchema = z.object({
+  body: z.object({
+    organizationId: z.string().uuid(),
+    invitationCode: z.string().min(6).max(6),
+  }),
+  query: z.object({}).passthrough().optional(),
+  params: z.object({}).passthrough().optional(),
+});
+
+export type JoinOrganizationRequest = z.infer<typeof joinOrganizationSchema>['body'];
