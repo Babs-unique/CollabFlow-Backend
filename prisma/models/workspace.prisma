@@ -1,0 +1,17 @@
+model Workspace {
+  id             String       @id @default(uuid()) @db.Uuid
+  name           String       @db.VarChar(255)
+  slug           String       @unique @db.VarChar(255)
+  description    String?      @db.VarChar(255)
+  type           Type         @default(SOFTWARE_ENGINEERING)
+  organizationId String       @db.Uuid
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
+}
+
+enum Type {
+  SOFTWARE_ENGINEERING
+  DESIGN_CREATIVE
+}

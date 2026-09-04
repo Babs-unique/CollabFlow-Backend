@@ -8,17 +8,17 @@ import {
     resetPassword,
     sendEmailVerification,
     verifyEmail,
-} from '../controllers/auth.controller.js';
+} from '../controllers/auth/auth.controller.js';
 import {
     getGoogleUserProfile,
     handleGoogleOauthCallback,
     initiateGoogleOAuth,
-} from '../controllers/googleOauth.controller.js';
+} from '../controllers/auth/googleOauth.controller.js';
 import {
     getGithubUser,
     handleGithubOauthCallback,
     initiateGithubOAuth,
-} from '../controllers/githubOauth.controller.js';
+} from '../controllers/auth/githubOauth.controller.js';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 import { loginSchema, registerSchema } from '../schema/auth.schema.js';
 import { validateRequest } from '../middlewares/validateResource.js';

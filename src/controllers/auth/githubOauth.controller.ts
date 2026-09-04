@@ -1,12 +1,12 @@
 import type { Request, Response, NextFunction } from 'express';
-import { githubConfig } from '../configs/github.js';
-import { githubAccessToken, githubUser } from '../services/github.service.js';
-import { userLoginOrRegister } from '../services/githubAuth.service.js';
-import { generateState, validateState, deleteState } from '../utils/state.js';
-import { generateCodeVerifier, generateCodeChallenge } from '../utils/pkce.js';
-import { prisma } from '../lib/prisma.js';
-import { createHttpError } from '../utils/httpError.js';
-import logger from '../lib/logger.js';
+import { githubConfig } from '../../configs/github.js';
+import { githubAccessToken, githubUser } from '../../services/github.service.js';
+import { userLoginOrRegister } from '../../services/githubAuth.service.js';
+import { generateState, validateState, deleteState } from '../../utils/state.js';
+import { generateCodeVerifier, generateCodeChallenge } from '../../utils/pkce.js';
+import { prisma } from '../../lib/prisma.js';
+import { createHttpError } from '../../utils/httpError.js';
+import logger from '../../lib/logger.js';
 
 const OAUTH_STATE_TTL_MS = 15 * 60 * 1000;
 
